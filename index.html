@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>System Design Interview Prep</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Reading Progress Bar -->
+  <div id="progress-bar"></div>
+
+  <!-- Mobile Menu Toggle -->
+  <button id="menu-toggle" aria-label="Toggle menu">
+    <span></span><span></span><span></span>
+  </button>
+
+  <!-- Sidebar -->
+  <aside id="sidebar">
+    <div class="sidebar-header">
+      <div class="logo">
+        <span class="logo-icon">📘</span>
+        <div>
+          <h1>System Design</h1>
+          <p class="subtitle">Interview Prep Guide</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="search-box">
+      <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+      <input type="text" id="search-input" placeholder="Search topics...">
+    </div>
+
+    <nav id="nav-tree"></nav>
+
+    <div class="sidebar-footer">
+      <button id="theme-toggle" title="Toggle theme">
+        <span class="theme-icon">🌙</span>
+        <span>Toggle Theme</span>
+      </button>
+    </div>
+  </aside>
+
+  <!-- Overlay for mobile -->
+  <div id="overlay"></div>
+
+  <!-- Main Content -->
+  <main id="main">
+    <div id="content">
+      <!-- Welcome screen -->
+      <div id="welcome">
+        <div class="welcome-hero">
+          <h1>🚀 System Design Interview Prep</h1>
+          <p class="hero-subtitle">A complete guide covering all core topics, from fundamentals to hard interview problems.</p>
+          
+          <div class="stats-grid">
+            <div class="stat-card">
+              <span class="stat-number">46</span>
+              <span class="stat-label">Documents</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-number">9</span>
+              <span class="stat-label">Core Concepts</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-number">30+</span>
+              <span class="stat-label">Interview Problems</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-number">100+</span>
+              <span class="stat-label">Interview Q&As</span>
+            </div>
+          </div>
+
+          <div class="quick-start">
+            <h2>📍 Where to Start</h2>
+            <div class="start-cards">
+              <div class="start-card" data-file="01-Core-Concepts.md">
+                <span class="card-icon">⚙️</span>
+                <h3>Core Concepts</h3>
+                <p>Scalability, CAP Theorem, Consistent Hashing & more</p>
+              </div>
+              <div class="start-card" data-file="10-How-To-Answer-SD-Interview.md">
+                <span class="card-icon">✅</span>
+                <h3>Interview Framework</h3>
+                <p>How to structure your answers in 45 minutes</p>
+              </div>
+              <div class="start-card" data-file="11-Interview-Problems-Easy.md">
+                <span class="card-icon">💻</span>
+                <h3>Practice Problems</h3>
+                <p>URL Shortener, WhatsApp, Uber & 25 more</p>
+              </div>
+              <div class="start-card" data-file="09-System-Design-Tradeoffs.md">
+                <span class="card-icon">⚖️</span>
+                <h3>Tradeoffs</h3>
+                <p>The 15 tradeoffs every interviewer asks about</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="architecture-diagram">
+            <h2>🏗️ System Design Building Blocks</h2>
+            <div class="mermaid">
+graph LR
+    Client[👤 Client] --> CDN[🌐 CDN]
+    Client --> LB[⚖️ Load Balancer]
+    LB --> GW[🚪 API Gateway]
+    GW --> Auth[🔐 Auth]
+    GW --> App1[📦 Service A]
+    GW --> App2[📦 Service B]
+    App1 --> Cache[⚡ Cache]
+    App1 --> DB[(🗄️ Database)]
+    App2 --> Queue[📨 Message Queue]
+    Queue --> Worker[👷 Workers]
+    Worker --> DB
+    App1 --> S3[📁 Object Store]
+
+    style Client fill:#6366f1,stroke:#4f46e5,color:#fff
+    style CDN fill:#06b6d4,stroke:#0891b2,color:#fff
+    style LB fill:#8b5cf6,stroke:#7c3aed,color:#fff
+    style GW fill:#ec4899,stroke:#db2777,color:#fff
+    style Auth fill:#f59e0b,stroke:#d97706,color:#fff
+    style App1 fill:#10b981,stroke:#059669,color:#fff
+    style App2 fill:#10b981,stroke:#059669,color:#fff
+    style Cache fill:#ef4444,stroke:#dc2626,color:#fff
+    style DB fill:#3b82f6,stroke:#2563eb,color:#fff
+    style Queue fill:#f97316,stroke:#ea580c,color:#fff
+    style Worker fill:#84cc16,stroke:#65a30d,color:#fff
+    style S3 fill:#a855f7,stroke:#9333ea,color:#fff
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Article content rendered here -->
+      <article id="article" class="hidden"></article>
+    </div>
+
+    <!-- Scroll to top -->
+    <button id="scroll-top" title="Scroll to top">↑</button>
+  </main>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
